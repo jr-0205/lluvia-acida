@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prevención y mitigación</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="video-bg" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="metadata" poster="media/poster.jpg">
+      <source src="media/videoplayback.webm" type="video/webm">
+    </video>
+    <div class="video-fallback" aria-hidden="true">
+      <iframe src="https://www.youtube-nocookie.com/embed/Mo79yzCM-X8?autoplay=1&mute=1&controls=0&loop=1&playlist=Mo79yzCM-X8&rel=0&modestbranding=1"
+        title="Video de fondo sobre lluvia" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="video-overlay" aria-hidden="true"></div>
+
+  <header><div class="container">
+    <nav>
+        <div class="brand" ><span class="dot"></span>Prevención y mitigación  </div>
+        <div class="menu">
+          <a href="index.html" aria-current="page">Inicio</a>
+          <a href="que-es.html">Qué es</a>
+          <a href="causas.html">Causas</a>
+          <a href="efectos.html">Efectos</a>
+          <a href="prevencion.html">Prevención</a>
+          <a href="quiz.html">Quiz</a>
+          <a href="mapa.html">Mapa</a>
+        </div>
+    </nav>
+  </div></header>
+
+  <main class="container">
+    <article class="card">
+      <h1>Prevención y mitigación</h1>
+      <p class="lead">Soluciones tecnológicas, políticas y acciones individuales.</p>
+
+      <section>
+        <h2>Tecnologías de control</h2>
+        <ul>
+          <li><strong>FGD (Desulfurización)</strong>: elimina 95% del SO₂ en chimeneas.</li>
+          <li><strong>SCR</strong>: reduce NOx en un 90%.</li>
+          <li>Filtros de partículas (ESP).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Políticas y regulación</h2>
+        <p>Normativas de emisiones, mercados de permisos y monitoreo continuo.</p>
+      </section>
+
+      <section>
+        <h2>Acciones individuales</h2>
+        <ul>
+          <li>Reducir uso de combustibles fósiles.</li>
+          <li>Apoyar energías renovables.</li>
+          <li>Transporte público o bicicleta.</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">...</footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.video-bg video, .video-bg iframe, .video-overlay').forEach(n => n.style.display = 'none');
+        return;
+      }
+      const video = document.querySelector('.video-bg video'), fb=document.querySelector('.video-fallback');
+      if (!video || !video.querySelector('source')) { if (fb) fb.style.display='block'; if (video) video.style.display='none'; return; }
+      video.addEventListener('error', ()=>{ if (fb){ video.style.display='none'; fb.style.display='block'; }});
+      video.addEventListener('play', ()=>{ if (fb) fb.style.display='none'; });
+      setTimeout(()=>{ if (video && video.paused && fb) { video.style.display='none'; fb.style.display='block'; } }, 1200);
+    })();
+  </script>
+</body>
+</html>

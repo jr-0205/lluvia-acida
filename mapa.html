@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lluvia Ácida en México</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="video-bg" aria-hidden="true">...</div>
+  <div class="video-overlay" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+        <nav>
+            <div class="brand"><span class="dot"></span>Lluvia Ácida en México  </div>
+            <div class="menu">
+              <a href="index.html" aria-current="page">Inicio</a>
+              <a href="que-es.html">Qué es</a>
+              <a href="causas.html">Causas</a>
+              <a href="efectos.html">Efectos</a>
+              <a href="prevencion.html">Prevención</a>
+              <a href="quiz.html">Quiz</a>
+              <a href="mapa.html">Mapa</a>
+            </div>
+        </nav>
+      </div>
+  </header>
+
+  <main class="container">
+    <article class="card">
+      <h1>Lluvia Ácida en México</h1>
+      <p class="lead">Zonas más afectadas por emisiones de refinerías y centrales térmicas.</p>
+
+      <svg viewBox="0 0 600 400" style="width:100%;max-width:600px;margin:2rem auto;display:block;" aria-label="Mapa de México con zonas de lluvia ácida">
+        <!-- México simplificado -->
+        <path d="M..." fill="#e0e0e0" stroke="#999"/>
+        <!-- Zonas afectadas -->
+        <circle cx="220" cy="180" r="25" fill="#e74c3c" opacity="0.6" aria-label="Refinería de Tula"/>
+        <circle cx="300" cy="220" r="30" fill="#e74c3c" opacity="0.7" aria-label="Central de Manzanillo"/>
+        <text x="220" y="175" text-anchor="middle" font-size="12" fill="#fff">Tula</text>
+      </svg>
+
+      <div class="data-highlight">
+        <strong>Refinería de Tula:</strong> 120,000 ton/año de SO₂ (INECC, 2022)<br>
+        <strong>Central de Manzanillo:</strong> Principal fuente de NOx en el Pacífico
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">...</footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

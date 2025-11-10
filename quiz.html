@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz: Lluvia Ácida</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="video-bg" aria-hidden="true">...</div>
+  <div class="video-overlay" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+        <nav>
+            <div class="brand"><span class="dot"></span>Quiz: Lluvia Ácida  </div>
+            <div class="menu">
+              <a href="index.html" aria-current="page">Inicio</a>
+              <a href="que-es.html">Qué es</a>
+              <a href="causas.html">Causas</a>
+              <a href="efectos.html">Efectos</a>
+              <a href="prevencion.html">Prevención</a>
+              <a href="quiz.html">Quiz</a>
+              <a href="mapa.html">Mapa</a>
+            </div>
+        </nav>
+      </div>
+  </header>
+
+  <main class="container">
+    <article class="card">
+      <h1>Quiz: ¿Cuánto sabes de lluvia ácida?</h1>
+      <p class="lead">5 preguntas. ¡Pon a prueba tus conocimientos!</p>
+
+      <form id="quiz-form">
+        <div class="question">
+          <p><strong>1. ¿Cuál es el pH promedio de la lluvia ácida?</strong></p>
+          <label><input type="radio" name="q1" value="a"> a) 7.0</label><br>
+          <label><input type="radio" name="q1" value="b"> b) 5.6</label><br>
+          <label><input type="radio" name="q1" value="c"> c) 4.3</label>
+        </div>
+        <div class="question">
+          <p><strong>2. ¿Qué gas es el principal precursor del ácido sulfúrico?</strong></p>
+          <label><input type="radio" name="q2" value="a"> a) CO₂</label><br>
+          <label><input type="radio" name="q2" value="b"> b) SO₂</label><br>
+          <label><input type="radio" name="q2" value="c"> c) O₃</label>
+        </div>
+        <!-- Agrega 3 preguntas más -->
+        <button type="button" id="submit-quiz" class="btn-primary">Ver Resultado</button>
+      </form>
+
+      <div id="result" style="display:none;margin-top:2rem;padding:1.5rem;background:#e8f5e8;border-radius:12px;">
+        <h2>¡Tu puntuación: <span id="score">0</span>/5</h2>
+        <p id="message"></p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">...</footer>
+  <script>
+    const answers = { q1: 'c', q2: 'b' };
+    document.getElementById('submit-quiz').addEventListener('click', () => {
+      let score = 0;
+      for (let i = 1; i <= 5; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === answers[`q${i}`]) score++;
+      }
+      document.getElementById('score').textContent = score;
+      document.getElementById('message').textContent = 
+        score === 5 ? '¡Excelente! Eres un experto.' :
+        score >= 3 ? 'Muy bien, casi lo logras.' : '¡Sigue aprendiendo!';
+      document.getElementById('quiz-form').style.display = 'none';
+      document.getElementById('result').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

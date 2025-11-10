@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Qué es — Lluvia Ácida</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="video-bg" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="metadata" poster="media/poster.jpg">
+      <source src="media/videoplayback.webm" type="video/webm">
+    </video>
+    <div class="video-fallback" aria-hidden="true">
+      <iframe src="https://www.youtube-nocookie.com/embed/Mo79yzCM-X8?autoplay=1&mute=1&controls=0&loop=1&playlist=Mo79yzCM-X8&rel=0&modestbranding=1"
+        title="Video de fondo sobre lluvia" allow="autoplay; encrypted-media" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="video-overlay" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand"><span class="dot"></span>¿Qué es?  </div>
+        <div class="menu">
+          <a href="index.html" aria-current="page">Inicio</a>
+          <a href="que-es.html">Qué es</a>
+          <a href="causas.html">Causas</a>
+          <a href="efectos.html">Efectos</a>
+          <a href="prevencion.html">Prevención</a>
+          <a href="quiz.html">Quiz</a>
+          <a href="mapa.html">Mapa</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="card">
+      <h1>¿Qué es la lluvia ácida?</h1>
+      <p class="lead">Precipitación con pH &lt; 5.6 causada por óxidos de azufre y nitrógeno.</p>
+
+      <div class="data-highlight">
+        <strong>Lluvia normal:</strong> pH 5.6 &nbsp;|&nbsp; <strong>Lluvia ácida:</strong> pH 4.0–5.0 &nbsp;|&nbsp; <strong>Vinagre:</strong> pH 2.4
+      </div>
+
+      <section style="text-align:center;margin:2.5rem 0;">
+        <h2>Reacciones químicas</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+          <div class="reaction">
+            <div class="molecule">SO₂</div>
+            <div class="arrow-down">↓</div>
+            <div class="molecule">H₂SO₄</div>
+            <p>Ácido sulfúrico</p>
+          </div>
+          <div class="reaction">
+            <div class="molecule">NOx</div>
+            <div class="arrow-down">↓</div>
+            <div class="molecule">HNO₃</div>
+            <p>Ácido nítrico</p>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <div>© <span id="year"></span></div>
+        <div class="footer-links"><a href="https://www.epa.gov/acidrain" target="_blank" rel="noopener">EPA</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mostrar año y controlar fallback / prefers-reduced-motion
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.video-bg video, .video-bg iframe, .video-overlay').forEach(n => n.style.display = 'none');
+        return;
+      }
+      const video = document.querySelector('.video-bg video');
+      const fallback = document.querySelector('.video-fallback');
+      if (!video || !video.querySelector('source')) {
+        if (fallback) fallback.style.display = 'block';
+        if (video) video.style.display = 'none';
+        return;
+      }
+      video.addEventListener('error', () => {
+        if (fallback) { video.style.display = 'none'; fallback.style.display = 'block'; }
+      });
+      video.addEventListener('play', () => {
+        if (fallback) fallback.style.display = 'none';
+      });
+      // Si autoplay queda bloqueado por el navegador, mostrar fallback tras short timeout
+      setTimeout(() => {
+        if (video && video.paused && fallback) {
+          video.style.display = 'none';
+          fallback.style.display = 'block';
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

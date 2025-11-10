@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lluvia Ácida | Inicio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="video-bg" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="metadata" poster="media/poster.jpg">
+      <source src="media/videoplayback.webm" type="video/webm">
+    </video>
+    <div class="video-fallback">
+      <iframe src="https://www.youtube-nocookie.com/embed/Mo79yzCM-X8?autoplay=1&mute=1&loop=1&playlist=Mo79yzCM-X8&controls=0" allow="autoplay" frameborder="0"></iframe>
+    </div>
+  </div>
+  <div class="video-overlay" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand"><span class="dot"></span>Lluvia Ácida  </div>
+        <div class="menu">
+          <a href="index.html" aria-current="page">Inicio</a>
+          <a href="que-es.html">Qué es</a>
+          <a href="causas.html">Causas</a>
+          <a href="efectos.html">Efectos</a>
+          <a href="prevencion.html">Prevención</a>
+          <a href="quiz.html">Quiz</a>
+          <a href="mapa.html">Mapa</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    
+
+    <section class="mega-panel" role="region" aria-label="Panel principal">
+                <div class="mega-content">
+                    <section class="hero-section">
+                        <div class="hero-content">
+                          <h1>La lluvia que <span class="highlight">corroe el planeta</span></h1>
+                          <p class="lead">Un fenómeno global causado por emisiones humanas. <strong>70% del SO₂ es antropogénico</strong> (EPA, 2023).</p>
+                          <div class="cards-grid">
+                            <a href="que-es.html" class="card-interactive">
+                              <div class="card-icon">🧪</div><h3>¿Que es?</h3><p>SO₂ + H₂O → H₂SO₄</p>
+                            </a>
+                            <a href="causas.html" class="card-interactive">
+                              <div class="card-icon">🏭</div><h3>Causas</h3><p>Centrales, vehículos</p>
+                            </a>
+                            <a href="efectos.html" class="card-interactive">
+                              <div class="card-icon">🌲</div><h3>Efectos</h3><p>Ecosistemas, salud</p>
+                            </a>
+                            <a href="prevencion.html" class="card-interactive">
+                              <div class="card-icon">🌍</div><h3>Prevención</h3><p>Soluciones reales</p>
+                            </a>
+                            <a href="quiz.html" class="card-interactive">
+                                <div class="card-icon">❓</div><h3>Quiz</h3><p>¿que tanto sabes?</p>
+                            </a>
+                            <a href="mapa.html" class="card-interactive">
+                                <div class="card-icon">🗺️</div><h3>Mapa</h3><p>lluvia acida en méxico</p>
+                              </a>
+                          </div>
+                        </div>
+                      </section>
+                </div>
+              </section>
+
+    <!-- Widget AQI en vivo -->
+    <section class="aqi-widget">
+      <h3>Calidad del Aire Ahora (Santa Teresa, MX)</h3>
+      <div id="live-aqi">Cargando...</div>
+      <p id="live-so2">SO₂: -- µg/m³</p>
+      <p id="live-no2">NO₂: -- µg/m³</p>
+      <small>Actualizado cada 5 min via Open-Meteo API</small>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-row">
+        <div>© <span id="year"></span> Lluvia Ácida • Educación Ambiental</div>
+        <div class="footer-links">
+          <a href="https://www.epa.gov/acidrain" target="_blank">EPA</a> • 
+          <a href="https://www.unep.org" target="_blank">UNEP</a>
+        </div>
+      </div>
+      <button id="download-pdf" class="btn-primary">Descargar PDF</button>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

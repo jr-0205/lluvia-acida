@@ -1,0 +1,275 @@
+/* ============================================================= */
+/*  RESET & TIPOGRAFÍA                                           */
+/* ============================================================= */
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; font-size:16px; }
+:root {
+  /* ...existing tokens... */
+  --header-height: 64px; /* altura de referencia para el header (ajustable) */
+}
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 300px at 10% 10%, rgba(11,110,168,0.06), transparent 6%),
+    linear-gradient(180deg,var(--bg-1, #f6fbfc),var(--bg-2, #ecf7fa));
+  color:var(--text);
+  line-height:1.5;
+  /* espacio superior para evitar que el contenido quede debajo del header sticky */
+  padding-top: calc(var(--header-height) + env(safe-area-inset-top, 8px));
+}
+.container { max-width:1000px; margin:0 auto; padding:0 1.5rem; }
+
+/* ============================================================= */
+/*  VIDEO BACKGROUND                                             */
+/* ============================================================= */
+.video-bg{
+  position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none;
+}
+.video-bg video,.video-bg iframe{
+  width:100vw; height:100vh; object-fit:cover;
+}
+.video-overlay{
+  position:fixed; inset:0;
+  background:linear-gradient(180deg,rgba(10,46,54,.35),rgba(10,46,54,.55));
+  z-index:-1; pointer-events:none;
+}
+
+/* ============================================================= */
+/*  HEADER & NAVIGATION                                          */
+/* ============================================================= */
+header{
+  /* Reducir separación superior y hacerlo sticky */
+  position: sticky;
+  top: env(safe-area-inset-top, 8px);
+  z-index: 4; /* encima del overlay y del resto */
+  display: block;
+  padding: 0.45rem 0; /* menor padding para acercar al borde superior */
+  margin: 0;
+  backdrop-filter: blur(4px) saturate(110%);
+  -webkit-backdrop-filter: blur(4px) saturate(110%);
+  background: linear-gradient(135deg, rgba(230,240,246,0.55) 0%, rgba(255,255,255,0.47) 60%);
+  border-bottom: 1px solid rgba(230,238,244,0.6);
+  min-height: var(--header-height);
+  display: flex;
+  align-items: center;
+}
+/* Ajustes del nav dentro del header para mejor alineación */
+header .container{display:flex;align-items:center;padding:0 1rem}
+nav{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{margin:0}
+.menu{margin-left:auto;display:flex;gap:.5rem;align-items:center}
+/* Reducir separación entre nav y contenido en pantallas pequeñas */
+@media (max-width:700px){
+  :root{ --header-height: 56px; }
+  body{ padding-top: calc(var(--header-height) + env(safe-area-inset-top, 6px)); }
+  header{ padding: .4rem 0; }
+}
+.menu{
+  display:flex; gap:1.1rem;
+}
+.menu a{
+  color:#2a6f97; text-decoration:none; padding:.45rem .9rem;
+  border-radius:8px; font-weight:500; transition:all .3s;
+  position:relative;
+}
+.menu a::after{
+  content:''; position:absolute; bottom:0; left:50%; width:0; height:2px;
+  background:#7fbf3f; transition:.3s; transform:translateX(-50%);
+}
+.menu a:hover::after,
+.menu a[aria-current="page"]::after{width:70%}
+.menu a:hover,
+.menu a[aria-current="page"]{background:#2a6f97;color:#fff}
+
+/* ============================================================= */
+/*  CARD & CONTENT                                               */
+/* ============================================================= */
+main{padding-top:100px; min-height:100vh}
+.card{
+  background:rgba(255,255,255,.94); backdrop-filter:blur(14px);
+  border-radius:18px; padding:2.2rem; margin:2rem 0;
+  box-shadow:0 12px 35px rgba(10,46,54,.1);
+  border:1px solid rgba(6,30,40,.08);
+}
+h1{font-size:2.4rem; color:#083246; margin-bottom:.6rem; font-weight:700}
+h2{font-size:1.6rem; color:#2a6f97; margin:2.2rem 0 1rem; font-weight:600}
+.lead{color:#5a6c7d; font-size:1.15rem; margin-bottom:2rem; font-weight:500}
+ul{padding-left:1.6rem; margin:1rem 0}
+li{margin:.6rem 0; position:relative}
+li::marker{color:#7fbf3f}
+
+/* ============================================================= */
+/*  MOLECULES & REACTIONS                                        */
+/* ============================================================= */
+.molecule{
+  background:linear-gradient(135deg,#7fbf3f,#5fa332);
+  color:#fff; padding:.7rem 1.4rem; border-radius:50px;
+  font-weight:700; font-size:1.15rem; display:inline-block;
+  min-width:80px; text-align:center;
+  box-shadow:0 5px 18px rgba(127,191,63,.35);
+  animation:float 3.5s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-10px) rotate(1deg)}
+}
+.reaction{
+  display:flex; flex-direction:column; align-items:center;
+  gap:.6rem; margin:1.5rem; text-align:center; min-width:120px;
+}
+.arrow-down{
+  font-size:2rem; color:#2a6f97;
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}
+}
+
+/* ============================================================= */
+/*  pH SCALE                                                     */
+/* ============================================================= */
+.ph-scale{
+  background:rgba(42,111,151,.08); padding:2rem; border-radius:16px;
+  margin:2rem 0; text-align:center; font-family:monospace;
+}
+.ph-bar{
+  height:30px;
+  background:linear-gradient(90deg,#e74c3c,#f39c12,#f1c40f,#2ecc71,#3498db);
+  border-radius:15px; margin:1rem 0; position:relative; overflow:hidden;
+}
+.ph-marker{
+  position:absolute; top:-40px; font-weight:bold; color:#0a2e36;
+}
+.ph-marker::after{
+  content:''; position:absolute; top:35px; left:50%; width:2px; height:20px;
+  background:#e74c3c; transform:translateX(-50%);
+}
+
+/* ============================================================= */
+/*  HERO SECTION (index)                                         */
+/* ============================================================= */
+.hero-section{
+  min-height:100vh; display:flex; align-items:center; padding:3rem 0;
+}
+.hero-content h1{
+  font-size:clamp(2.4rem,7vw,4.2rem); line-height:1.15; margin-bottom:1.2rem;
+}
+.hero-content .highlight{
+  background:linear-gradient(120deg,#7fbf3f 0%,#5fa332 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  font-weight:800;
+}
+.cards-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:1.8rem; margin-top:2.5rem;
+}
+.card-interactive{
+  background:rgba(255,255,255,.92); padding:2rem; border-radius:18px;
+  text-decoration:none; color:inherit;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+  transition:all .4s cubic-bezier(.2,.8,.2,1);
+  position:relative; overflow:hidden;
+}
+.card-interactive::before{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(127,191,63,.15),transparent);
+  opacity:0; transition:.4s; transform:translateX(-100%);
+}
+.card-interactive:hover::before{opacity:1; transform:translateX(0)}
+.card-interactive:hover{
+  transform:translateY(-14px) scale(1.03);
+  box-shadow:0 25px 50px rgba(0,0,0,.15);
+}
+.card-icon{font-size:3rem; margin-bottom:1rem; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1))}
+
+/* ============================================================= */
+/*  AQI WIDGET & DASHBOARD                                       */
+/* ============================================================= */
+.aqi-widget{
+  background:rgba(255,255,255,.9); padding:1.5rem; border-radius:16px;
+  text-align:center; margin:2rem 0; box-shadow:0 8px 25px rgba(0,0,0,.1);
+}
+.aqi-value{font-size:2.5rem; color:#2a6f97; margin:.5rem 0}
+.aqi-dashboard .aqi-card{
+  background:rgba(255,255,255,.8); padding:2rem; border-radius:16px;
+  margin:1rem 0;
+}
+#pollutants div{margin:.4rem 0; font-weight:600; color:#7fbf3f}
+
+/* ============================================================= */
+/*  DATA HIGHLIGHT                                               */
+/* ============================================================= */
+.data-highlight{
+  background:linear-gradient(135deg,rgba(42,111,151,.1),rgba(127,191,63,.1));
+  padding:1.5rem; border-radius:14px; margin:1.5rem 0;
+  border-left:5px solid #7fbf3f; font-size:1.05rem;
+}
+
+/* ============================================================= */
+/*  FOOTER                                                       */
+/* ============================================================= */
+.site-footer{
+  background:rgba(10,46,54,.06); padding:2.5rem 0; margin-top:4rem;
+  font-size:.95rem; color:#5a6c7d; border-top:1px solid rgba(0,0,0,.08);
+}
+.footer-row{
+  display:flex; justify-content:space-between; flex-wrap:wrap;
+  gap:1rem; align-items:center;
+}
+.footer-links a{
+  color:#2a6f97; margin:0 .6rem; text-decoration:none; font-weight:500;
+}
+.footer-links a:hover{text-decoration:underline}
+.btn-primary{
+  background:#2a6f97; color:#fff; padding:.6rem 1.2rem;
+  border:none; border-radius:50px; cursor:pointer; font-weight:500;
+}
+
+/* ============================================================= */
+/*  MEGA PANEL                                                   */
+/* ============================================================= */
+/* Mega panel semi-transparente (inicio) */
+.mega-panel{
+  margin: 1.25rem 0;
+  padding: 2.25rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.48); /* semi-transparente para ver video */
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid rgba(6,30,40,0.06);
+  box-shadow: 0 18px 50px rgba(6,30,40,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mega-content{max-width:980px;text-align:center;padding:0 1rem}
+.mega-panel h1{font-size:2.4rem;margin:0 0 .6rem;line-height:1.05;color:var(--text)}
+.mega-panel .lead{font-size:1.05rem;color:var(--muted);margin-bottom:1rem}
+.panel-actions{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+.btn{padding:.6rem .95rem;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+.btn.primary{background:linear-gradient(90deg,var(--accent),#085f82);color:#fff;box-shadow:0 10px 30px rgba(11,110,168,0.14)}
+.btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(11,110,168,0.08)}
+.panel-note{color:var(--muted);margin-top:1rem;font-size:.95rem}
+
+/* Mantener accesibilidad y contraste en navegadores sin backdrop-filter */
+@supports not ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+  .mega-panel{ background: rgba(255,255,255,0.78); }
+}
+
+/* Responsive: ajustar tamaño y padding en móviles */
+@media (max-width:700px){
+  .mega-panel{padding:1rem;border-radius:10px;margin:.6rem 0}
+  .mega-panel h1{font-size:1.4rem}
+  .panel-actions{gap:.5rem}
+}
+
+/* ============================================================= */
+/*  RESPONSIVE                                                   */
+/* ============================================================= */
+@media (max-width:768px){
+  .container{padding:0 1rem}
+  .menu{display:none}
+  .card{padding:1.6rem}
+  h1{font-size:2rem}
+  .ph-scale{font-size:.9rem}
+}
